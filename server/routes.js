@@ -9,7 +9,7 @@ exports.routes = express.Router();
 logger_1.logger.silly("dir: " + __dirname);
 var clientStaticRoute = __dirname + '/../client';
 logger_1.logger.info("client static route: " + clientStaticRoute);
-exports.routes.use('/', express.static(clientStaticRoute, { redirect: false }));
+exports.routes.use('/', express.static(clientStaticRoute));
 // const nodeModulesRoute = __dirname + '/../../node_modules';
 // logger.info(`node modules route ${nodeModulesRoute}`);
 // routes.use('/node_modules', express.static(nodeModulesRoute, { redirect: false }));
