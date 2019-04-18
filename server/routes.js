@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var path = require("path");
 var express = require("express");
 var logger_1 = require("./logger");
-var history_1 = require("./models/history");
+var health_1 = require("./models/health");
 exports.routes = express.Router();
 // static routes
 logger_1.logger.silly("dir: " + __dirname);
@@ -14,10 +14,10 @@ exports.routes.use('/', express.static(clientStaticRoute));
 // logger.info(`node modules route ${nodeModulesRoute}`);
 // routes.use('/node_modules', express.static(nodeModulesRoute, { redirect: false }));
 // routes
-exports.routes.post('/api/history', function (req, res, next) {
-    if (req.body.url) {
-        var history_2 = new history_1.History({ url: 'http://www.google.de' });
-        history_2.save(function (err) {
+exports.routes.post('/api/healthcheck', function (req, res, next) {
+    if (req.body.date) {
+        var health = new health_1.Health({ date: new Date(req.body.date) });
+        health.save(function (err) {
             if (err) {
                 return res.status(500).json({ ok: false, error: err });
             }
